@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Customer</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link rel="stylesheet" href="style.css">
+    <!-- Theme style -->
+</head>
+
+<body class="main">
+    <!--FORM OF CUSTOMER INFOMATION DATA-->
+    <form class="form" id="form-1">
+        <div class="form-group">
+            <label for="fullname" class="form-label">Name: </label>
+            <input type="text" id="fullname" name="fullname" placeholder="Name...">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="email" class="form-label">Email : </label>
+            <input type="text" id="email" name="email" placeholder="Email...">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="password" class="form-label">Password : </label>
+            <input type="password" id="password" name="password" placeholder="Password...">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="reEnterPassword" class="form-label">Password : </label>
+            <input type="text" id="reEnterPassword" name="reEnterPassword" placeholder="reEnterPassword...">
+            <span class="form-message"></span>
+        </div>
+        <button>save</button>
+    </form>
+    <script src="validate.js"></script>
+
+    <script>
+        Validator({
+            form: '#form-1',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#fullname'),
+                Validator.isRequired('#email'),
+                Validator.isEmail('#email'),
+                Validator.minLengt('#password', 1),
+                Validator.isRequired('#reEnterPassword'),
+                Validator.isReEnterPass('#reEnterPassword', function () {
+                    return document.querySelector('#form-1 #password').value;
+                }, ' Mật khẩu nhập lại không chính xác')
+            ]
+        });
+
+
+    </script>
+</body>
+
+</html>
